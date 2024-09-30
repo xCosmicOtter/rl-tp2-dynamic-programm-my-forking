@@ -8,7 +8,7 @@ testsuite: reformat
 tiny-testsuite: reformat
 	$(PYTHON) tiny-test.py
 
-reformat: 
+reformat:
 	$(PYTHON) -m black .
 	$(PYTHON) -m isort .
 
@@ -17,4 +17,3 @@ fast_commit: reformat
 
 fast_push: fast_commit
 	git push
-	

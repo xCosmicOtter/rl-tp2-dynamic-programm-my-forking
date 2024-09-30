@@ -45,6 +45,7 @@ class MDP(gym.Env):
 
     def __init__(self):
         # BEGIN SOLUTION
+        raise NotImplementedError()
         # END SOLUTION
 
     def reset_state(self, value: t.Optional[int] = None):
@@ -59,11 +60,14 @@ class MDP(gym.Env):
         else:
             self.initial_state = value
 
-    def step(self, action: int, transition: bool = True) -> tuple[int, float, bool, dict]:  # type: ignore
+    def step(
+        self, action: int, transition: bool = True
+    ) -> tuple[int, float, bool, dict]:  # type: ignore
         """
         Effectue une transition dans le MDP.
         Renvoie l'observation suivante, la récompense, un booléen indiquant
         si l'épisode est terminé, et un dictionnaire d'informations.
         """
         # BEGIN SOLUTION
+        raise NotImplementedError()
         # END SOLUTION
