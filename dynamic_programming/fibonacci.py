@@ -23,6 +23,8 @@ def fibonacci(n: int) -> int:
     """
     Calcule le n-ième terme de la suite de Fibonacci.
     """
+    # BEGIN SOLUTION
+    # END SOLUTION
 
 
 # Exercice 2: Fibonacci avec mémorisation
@@ -39,3 +41,5 @@ def fibonacci_memo(n: int) -> int:
     résultats intermédiaires.
     """
 
+    # BEGIN SOLUTION
+    # END SOLUTION

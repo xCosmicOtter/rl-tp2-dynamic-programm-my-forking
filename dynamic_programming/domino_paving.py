@@ -17,3 +17,5 @@ def domino_paving(n: int) -> int:
     avec des dominos.
     """
     a = 0
+    # BEGIN SOLUTION
+    # END SOLUTION
