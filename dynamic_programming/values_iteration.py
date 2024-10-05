@@ -25,7 +25,6 @@ def mdp_value_iteration(mdp: MDP, max_iter: int = 1000, gamma=1.0) -> np.ndarray
     https://en.wikipedia.org/wiki/Markov_decision_process#Value_iteration
     """
     values = np.zeros(mdp.observation_space.n)
-    # BEGIN SOLUTION
     for _ in range(max_iter):
         for state in range(mdp.observation_space.n):
             tmp = []
@@ -34,7 +33,6 @@ def mdp_value_iteration(mdp: MDP, max_iter: int = 1000, gamma=1.0) -> np.ndarray
                 new_value = (reward + gamma * values[next_state])
                 tmp.append(new_value) 
             values[state] = max(tmp)
-    # END SOLUTION
     return values
 
 
@@ -49,7 +47,6 @@ def grid_world_value_iteration(
     theta est le seuil de convergence (différence maximale entre deux itérations).
     """
     values = np.zeros((4, 4))
-    # BEGIN SOLUTION
     for _ in range(max_iter):
         all_converged = np.zeros((env.height, env.width))
         for height in range(env.height):
@@ -68,7 +65,6 @@ def grid_world_value_iteration(
         if np.all(all_converged):
             break
     return values
-    # END SOLUTION
 
 
 def value_iteration_per_state(env, values, gamma, prev_val, delta):
@@ -97,8 +93,6 @@ def stochastic_grid_world_value_iteration(
     theta: float = 1e-5,
 ) -> np.ndarray:
     values = np.zeros((4, 4))
-    # BEGIN SOLUTION
-
     for _ in range(max_iter):
         prev_val = values.copy()
         all_converged = np.zeros((env.height, env.width))

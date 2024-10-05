@@ -17,7 +17,6 @@ def domino_paving(n: int) -> int:
     avec des dominos.
     """
     a = 0
-    # BEGIN SOLUTION
     if n % 2 != 0:
         return 0
     if n == 0:
@@ -32,4 +31,3 @@ def domino_paving(n: int) -> int:
         a0 = tmp
     # #facile #recurrence #trivial
     return a1
-    # END SOLUTION
