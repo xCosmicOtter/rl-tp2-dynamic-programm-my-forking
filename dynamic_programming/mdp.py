@@ -45,7 +45,14 @@ class MDP(gym.Env):
 
     def __init__(self):
         # BEGIN SOLUTION
-        raise NotImplementedError()
+        self.P = [
+            [(1, -1, False), (0, -1, False)],
+            [(0, -1, False), (2, -1, False)],
+            [(2, 0, False), (0, -1, False)],
+        ]
+        self.initial_state = 0
+        self.observation_space = spaces.Discrete(3)
+        self.action_space = spaces.Discrete(2)
         # END SOLUTION
 
     def reset_state(self, value: t.Optional[int] = None):
@@ -69,5 +76,5 @@ class MDP(gym.Env):
         si l'épisode est terminé, et un dictionnaire d'informations.
         """
         # BEGIN SOLUTION
-        raise NotImplementedError()
+        return (*self.P[self.initial_state][action], {})
         # END SOLUTION

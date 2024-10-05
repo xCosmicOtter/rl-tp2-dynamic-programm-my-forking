@@ -26,6 +26,14 @@ def mdp_value_iteration(mdp: MDP, max_iter: int = 1000, gamma=1.0) -> np.ndarray
     """
     values = np.zeros(mdp.observation_space.n)
     # BEGIN SOLUTION
+    for _ in range(max_iter):
+        for state in range(mdp.observation_space.n):
+            tmp = []
+            for action in range(mdp.action_space.n):
+                next_state, reward, _ = mdp.P[state][action]
+                new_value = (reward + gamma * values[next_state])
+                tmp.append(new_value) 
+            values[state] = max(tmp)
     # END SOLUTION
     return values
 
@@ -42,6 +50,24 @@ def grid_world_value_iteration(
     """
     values = np.zeros((4, 4))
     # BEGIN SOLUTION
+    for _ in range(max_iter):
+        all_converged = np.zeros((env.height, env.width))
+        for height in range(env.height):
+            for width in range(env.width):
+                if env.grid[height][width] in {"W", "P", "N"}:
+                    continue
+                tmp = []
+                for action in range(env.action_space.n):
+                    env.set_state(height, width)
+                    next_state, reward, _, _ = env.step(action, False)
+                    cumsum = (reward + gamma * values[next_state[0]][next_state[1]])
+                    tmp.append(cumsum)
+                if np.abs(values[(height, width)] - max(tmp)) < theta:
+                    all_converged[height, width] = 1
+                values[height][width] = max(tmp)
+        if np.all(all_converged):
+            break
+    return values
     # END SOLUTION
 
 
@@ -72,3 +98,18 @@ def stochastic_grid_world_value_iteration(
 ) -> np.ndarray:
     values = np.zeros((4, 4))
     # BEGIN SOLUTION
+
+    for _ in range(max_iter):
+        prev_val = values.copy()
+        all_converged = np.zeros((env.height, env.width))
+        for height in range(env.height):
+            for width in range(env.width):
+                if env.grid[height][width] in {"W", "P", "N"}:
+                    continue
+                env.set_state(height, width)
+                delta = value_iteration_per_state(env=env, values=values, gamma=gamma, prev_val=prev_val, delta=theta)
+                if delta < theta:
+                    all_converged[height, width] = 1
+        if np.all(all_converged):
+            break
+    return values
